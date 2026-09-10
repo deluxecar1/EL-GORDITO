@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Definimos el color naranja/rojizo del restaurante */
+@theme {
+  --color-brand: #FF5722;
+}
+
+body {
+  background-color: #F3F4F6; /* Fondo gris claro de la app */
+}
