@@ -468,9 +468,6 @@ function MenuPage({
 }: {
   onAdd: (product: Product) => void;
 }) {
-  cartByProduct: Record<string, number>;
-  onAdd: (product: Product) => void;
-}) {
   const [query, setQuery] = useState("");
   const [activeTab, setActiveTab] = useState<(typeof CATEGORY_TABS)[number]>("Churrascos");
 
@@ -1030,18 +1027,23 @@ export default function App() {
   const [notes, setNotes] = useState("");
 
   const cartCount = cart.reduce((sum, l) => sum + l.qty, 0);
-  const cartByProduct = useMemo(
-    () => Object.fromEntries(cart.map((l) => [l.product.id, l.qty])),
-    [cart]
-  );
 
-        return prev.map((l) =>
-          l.product.id === product.id ? { ...l, qty: l.qty + 1 } : l
-        );
-      }
-      return [...prev, { product, qty: 1 }];
-    });
-  }
+function addToCart(product: Product) {
+  setCart((prev) => {
+    const existing = prev.find((l) => l.product.id === product.id);
+
+    if (existing) {
+      return prev.map((l) =>
+        l.product.id === product.id
+          ? { ...l, qty: l.qty + 1 }
+          : l
+      );
+    }
+
+    return [...prev, { product, qty: 1 }];
+  });
+}
+
 
   function incrementLine(id: string) {
     setCart((prev) => prev.map((l) => (l.product.id === id ? { ...l, qty: l.qty + 1 } : l)));
