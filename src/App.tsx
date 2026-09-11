@@ -14,7 +14,6 @@ import {
   Mail,
   Send,
   ArrowLeft,
-  UtensilsCrossed,
   Bike,
   Trash2,
 } from "lucide-react";
@@ -26,7 +25,6 @@ import {
 const RESTAURANT_NAME = "El Gordito";
 const RESTAURANT_FULL_NAME = "El Gordito Fast Food";
 const WHATSAPP_NUMBER = "56954546997"; // digits only, country code included
-const DELIVERY_FEE = 0;
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
