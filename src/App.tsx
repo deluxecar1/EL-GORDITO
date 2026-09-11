@@ -363,13 +363,12 @@ function BottomNav({ view, onNavigate }: { view: View; onNavigate: (v: View) => 
           <button
             key={item.id}
             onClick={() => onNavigate(item.id)}
-            className={`flex min-h-[44px] flex-1 flex-col items-center justify-center gap-0.5 rounded-xl py-1 text-[11px] active:bg-neutral-50 ${
+            className={`flex min-h-[48px] flex-1 flex-col items-center justify-center gap-1 rounded-xl py-1 text-[11px] active:bg-neutral-50 ${
               active ? "text-green-700" : "text-neutral-400"
             }`}
           >
             {item.icon}
-            <span className={`text-xl md:text-2xl ${active ? "font-bold" : "font-semibold"}`}>
-  {item.label}
+<span className={`text-[11px] ${active ? "font-bold" : "font-semibold"}`}>  {item.label}
 </span>
           </button>
         );
@@ -566,8 +565,7 @@ function MenuPage({
               <p className="mt-auto pt-4 text-lg font-bold text-green-700">{formatPrice(product.price)}</p>
               <button
   onClick={() => onAdd(product)}
-  className="absolute bottom-3 right-3 z-10 hidden h-10 w-10 items-center justify-center rounded-full bg-[#0B6B3A] text-xl font-bold text-white transition hover:bg-[#07552F] sm:flex"
-  aria-label={`Agregar ${product.name} al carrito`}
+className="absolute bottom-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-[#0B6B3A] text-lg font-bold text-white transition hover:bg-[#07552F]"  aria-label={`Agregar ${product.name} al carrito`}
 >
   +
 </button>
