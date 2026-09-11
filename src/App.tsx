@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import logo from "./assets/CarruselRecurso 9.png";
+import heroNueva from "./assets/ChatGPT Image 11 sept 2026, 02_37_19.png";
+import burguer from "./assets/BURGUER.jfif";
 import {
   Home as HomeIcon,
   BookOpen,
@@ -275,10 +277,10 @@ function Header({
 }) {
   return (
     <header
-      className="sticky top-0 z-20 flex-shrink-0 border-b border-neutral-100 bg-white/95 backdrop-blur"
+      className="sticky top-0 z-20 flex-shrink-0 border-b border-green-100 bg-white/95 backdrop-blur"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-20 md:px-8">
+      <div className="relative flex h-24 w-full items-center justify-between px-6 md:h-32 md:px-16">
         {/* left: back arrow (mobile only, when not home) + logo */}
         <div className="flex items-center gap-2">
           {view !== "home" && (
@@ -298,7 +300,7 @@ function Header({
             <img
   src={logo}
   alt="El Gordito Fast Food"
-  className="h-14 w-auto object-contain md:h-14"
+  className="h-20 w-auto object-contain md:h-24"
 />
           </button>
         </div>
@@ -309,14 +311,14 @@ function Header({
         </h1>
 
         {/* desktop horizontal nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-16 md:flex">
           {NAV_ITEMS.map((item) => {
             const active = view === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`text-sm font-semibold transition-colors ${
+                className={`text-xl md:text-2xl font-bold tracking-tight transition-colors ${
                   active ? "text-green-700" : "text-neutral-500 hover:text-neutral-900"
                 }`}
               >
@@ -330,16 +332,16 @@ function Header({
         <button
           onClick={onCartClick}
           aria-label="Carrito"
-          className="relative rounded-full p-2 text-green-700 active:bg-neutral-100 md:border md:border-neutral-200 md:px-4 md:py-2 md:hover:bg-neutral-50"
+          className="relative rounded-full p-3 text-[#0B6B3A] active:bg-neutral-100 md:border md:border-neutral-200 md:px-6 md:py-3 md:hover:bg-neutral-50"
         >
           <span className="flex items-center gap-2">
-            <ShoppingCart size={20} />
-            <span className="hidden text-sm font-semibold text-neutral-800 md:inline">
+            <ShoppingCart size={24} />
+            <span className="hidden text-base font-semibold text-neutral-800 md:inline">
               Carrito
             </span>
           </span>
           {!!cartCount && (
-            <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-green-600 text-[10px] font-bold text-white md:right-1 md:top-1">
+            <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-green-600 text-xs font-bold text-white md:right-1 md:top-1">
               {cartCount}
             </span>
           )}
@@ -366,7 +368,9 @@ function BottomNav({ view, onNavigate }: { view: View; onNavigate: (v: View) => 
             }`}
           >
             {item.icon}
-            <span className={active ? "font-semibold" : ""}>{item.label}</span>
+            <span className={`text-xl md:text-2xl ${active ? "font-bold" : "font-semibold"}`}>
+  {item.label}
+</span>
           </button>
         );
       })}
@@ -381,27 +385,48 @@ function BottomNav({ view, onNavigate }: { view: View; onNavigate: (v: View) => 
 function HomePage({ onGoToMenu }: { onGoToMenu: () => void }) {
   return (
     <div className="pb-6 md:pb-16">
-      <div className="mx-4 mt-4 overflow-hidden rounded-2xl md:mx-auto md:mt-8 md:max-w-5xl">
-        <div
-          className="relative h-44 bg-cover bg-center md:h-80"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1200&h=700&fit=crop)",
-          }}
-        >
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-3 md:p-8">
-            <p className="text-lg font-bold text-white md:text-3xl">Bienvenido</p>
-            <button
-              onClick={onGoToMenu}
-              className="mt-1 text-sm text-white/90 underline underline-offset-2 md:mt-4 md:inline-block md:rounded-full md:bg-white md:px-5 md:py-2.5 md:text-sm md:font-semibold md:text-green-800 md:no-underline md:hover:bg-neutral-100"
-            >
-              Descubre nuestro menú
-            </button>
-          </div>
-        </div>
-      </div>
+      <div className="mx-6 mt-4 overflow-hidden rounded-2xl md:mx-16 md:mt-8">
+  <div className="grid min-h-[420px] items-center md:grid-cols-[42%_58%]">
+    
+    <div
+  className="h-72 bg-cover bg-no-repeat md:h-full"
+  style={{
+    backgroundImage: `url(${heroNueva})`,
+    backgroundPosition: "70% center",
+  }}
+/>
 
-      <div className="mt-6 px-4 md:mx-auto md:mt-12 md:grid md:max-w-5xl md:grid-cols-2 md:gap-12 md:px-8">
+    <div className="flex flex-col justify-center rounded-r-2xl px-6 py-10 text-white md:px-10">
+  <p className="text-sm font-bold uppercase tracking-[0.35em] text-[#0B6B3A]">
+    Bienvenidos a
+  </p>
+
+  <h1 className="mt-4 text-5xl font-bold uppercase leading-none md:text-7xl">
+    <span className="text-[#0B6B3A]">EL</span>
+    <span className="text-[#0B6B3A]">Gordito</span>
+  </h1>
+
+  <p className="mt-5 text-xl font-bold uppercase text-neutral-900 md:text-3xl">
+    Hamburguesas, churrascos y papas fritas
+  </p>
+
+  <p className="mt-4 max-w-xl text-base leading-7 text-neutral-600 md:text-lg">
+    Sabor contundente, hecho para matar el hambre como corresponde.
+  </p>
+
+  <button
+    onClick={onGoToMenu}
+    className="mt-8 flex w-full items-center justify-center rounded-full bg-[#0B6B3A] px-6 py-4 text-base font-bold uppercase text-white transition hover:bg-[#07552E]"
+  >
+    Hacer un pedido
+</button>
+</div>
+
+</div>
+
+</div>
+
+<div className="mt-6 w-full px-6 md:mt-12 md:grid md:grid-cols-2 md:gap-16 md:px-16 lg:px-24">
         <div>
           <h2 className="text-xl font-bold text-neutral-900 md:text-2xl">
             Bienvenidos a {RESTAURANT_FULL_NAME}
@@ -457,8 +482,40 @@ function MenuPage({
   }, [activeTab, query]);
 
   return (
-    <div className="px-4 pb-4 md:mx-auto md:max-w-5xl md:px-8 md:pb-12">
-      <div className="mt-3 flex items-center gap-2 rounded-xl bg-neutral-100 px-3 py-2.5 md:mt-6 md:max-w-sm">
+    <div className="w-full bg-white px-6 py-10 md:px-16 lg:px-20">
+      {/* ENCABEZADO DEL MENÚ */}
+<section className="mb-10 border-b border-green-100 pb-8">
+  <p className="text-sm font-bold uppercase tracking-[0.35em] text-green-700">
+    Nuestro menú
+  </p>
+
+  <div className="mt-4 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+    <div>
+      <h1 className="text-4xl font-bold leading-tight text-neutral-900 md:text-6xl">
+        Elige tu favorito,
+        <span className="block text-green-700">
+          nosotros hacemos el resto.
+        </span>
+      </h1>
+
+      <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600 md:text-lg">
+        Hamburguesas, churrascos y papas fritas preparadas al momento.
+        Encuentra tu favorito, agrégalo al carrito y realiza tu pedido.
+      </p>
+    </div>
+
+    <div className="shrink-0 md:text-right">
+      <p className="text-2xl font-bold italic text-green-700 md:text-3xl">
+        Sabor contundente.
+      </p>
+
+      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.3em] text-neutral-400">
+        El Gordito Fast Food
+      </p>
+    </div>
+  </div>
+</section>
+      <div className="mt-6 flex w-full max-w-xl items-center gap-3 rounded-xl bg-neutral-100 px-4 py-3">
         <Search size={18} className="text-neutral-400" />
         <input
           value={query}
@@ -468,16 +525,16 @@ function MenuPage({
         />
       </div>
 
-      <div className="mt-4 flex gap-5 overflow-x-auto border-b border-neutral-100 text-sm text-neutral-400 [scrollbar-width:none]">
+      <div className="mt-6 flex w-full gap-12 overflow-x-auto border-b border-green-100 pb-1 text-base text-neutral-500 [scrollbar-width:none]">
         {CATEGORY_TABS.map((tab) => {
           const active = tab === activeTab;
           return (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`whitespace-nowrap pb-2 ${
+              className={`whitespace-nowrap px-2 pb-3 text-lg font-medium ${
                 active
-                  ? "border-b-2 border-green-700 font-semibold text-neutral-900"
+                  ? "border-b-2 border-green-700 font-bold text-green-700"
                   : ""
               }`}
             >
@@ -487,7 +544,7 @@ function MenuPage({
         })}
       </div>
 
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-5 lg:grid-cols-3">
+      <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {filtered.length === 0 && (
           <p className="col-span-full py-8 text-center text-sm text-neutral-400">
             No encontramos platos con ese nombre.
@@ -496,28 +553,26 @@ function MenuPage({
         {filtered.map((product) => (
           <div
             key={product.id}
-            className="flex items-center gap-3 rounded-2xl bg-white p-2 shadow-sm ring-1 ring-neutral-100 sm:flex-col sm:items-stretch sm:gap-0 sm:overflow-hidden sm:p-0"
+            className="relative flex min-h-[210px] overflow-hidden rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-sm"
           >
             <img
               src={product.image}
               alt={product.name}
-              className="h-16 w-16 flex-shrink-0 rounded-xl object-cover sm:h-40 sm:w-full sm:rounded-none"
+              className="h-full w-[42%] flex-shrink-0 object-cover object-center"
             />
-            <div className="min-w-0 flex-1 sm:p-4">
-              <p className="truncate font-semibold text-neutral-900">
+            <div className="order-1 flex min-w-0 flex-1 flex-col p-4">
+              <p className="text-lg font-bold text-neutral-900">
                 {product.name}
               </p>
-              <p className="text-sm text-neutral-400">{product.subtitle}</p>
-              <p className="font-bold text-green-700">{formatPrice(product.price)}</p>
+              <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-neutral-500">{product.subtitle}</p>
+              <p className="mt-auto pt-4 text-lg font-bold text-green-700">{formatPrice(product.price)}</p>
               <button
-                onClick={() => onAdd(product)}
-                className="mt-3 hidden w-full items-center justify-center gap-1.5 rounded-full bg-green-700 px-3 py-2.5 text-sm font-semibold text-white active:bg-green-800 sm:flex"
-              >
-                <ShoppingCart size={16} />
-                {cartByProduct[product.id]
-                  ? `Agregado (${cartByProduct[product.id]})`
-                  : "Agregar al carrito"}
-              </button>
+  onClick={() => onAdd(product)}
+  className="absolute bottom-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-2xl font-bold text-white transition hover:bg-green-700"
+  aria-label={`Agregar ${product.name} al carrito`}
+>
+  +
+</button>
             </div>
             <button
               onClick={() => onAdd(product)}
@@ -713,15 +768,43 @@ ${form.message}`;
   window.open(whatsappUrl, "_blank");
 }
   return (
-    <div className="px-4 pb-6 md:mx-auto md:max-w-5xl md:px-8 md:pb-16">
-      <h2 className="mt-3 text-lg font-bold text-neutral-900 md:mt-6 md:text-2xl">
-        Contáctanos
-      </h2>
+    <div className="w-full bg-white px-6 py-10 md:px-16 lg:px-20">
+      <section className="mb-10 border-b border-green-100 pb-8">
+  <p className="text-sm font-bold uppercase tracking-[0.35em] text-green-700">
+    Pídenos
+  </p>
 
-      <div className="mt-4 md:grid md:grid-cols-2 md:gap-14">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+  <div className="mt-4 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+    <div>
+      <h1 className="text-4xl font-bold leading-tight text-neutral-900 md:text-6xl">
+        Haz tu pedido,
+        <span className="block text-green-700">
+          nosotros lo preparamos.
+        </span>
+      </h1>
+
+      <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600 md:text-lg">
+        ¿Tienes alguna consulta, pedido especial o quieres coordinar tu compra?
+        Escríbenos y te responderemos por WhatsApp.
+      </p>
+    </div>
+
+    <div className="shrink-0 md:text-right">
+      <p className="text-2xl font-bold italic text-green-700 md:text-3xl">
+        Rico, rápido y contundente.
+      </p>
+
+      <p className="mt-2 text-xs font-semibold uppercase tracking-[0.3em] text-neutral-400">
+        El Gordito Fast Food
+      </p>
+    </div>
+  </div>
+</section>
+
+      <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <div>
-            <label className="mb-1 block text-sm font-semibold text-neutral-700">
+            <label className="mb-2 block text-base font-semibold text-neutral-700">
               Nombre
             </label>
             <input
@@ -729,7 +812,7 @@ ${form.message}`;
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="introduce tu nombre"
-              className="w-full rounded-xl bg-neutral-100 px-3 py-3 text-base outline-none placeholder:text-neutral-400"
+              className="w-full rounded-xl bg-neutral-100 px-4 py-4 text-base outline-none placeholder:text-neutral-400"
             />
           </div>
           <div>
@@ -742,7 +825,7 @@ ${form.message}`;
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder="Introduce tu correo"
-              className="w-full rounded-xl bg-neutral-100 px-3 py-3 text-base outline-none placeholder:text-neutral-400"
+              className="w-full rounded-xl bg-neutral-100 px-4 py-4 text-base outline-none placeholder:text-neutral-400"
             />
           </div>
           <div>
@@ -755,7 +838,7 @@ ${form.message}`;
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               placeholder="Escribe tu mensaje"
-              className="w-full resize-none rounded-xl bg-neutral-100 px-3 py-3 text-base outline-none placeholder:text-neutral-400"
+              className="w-full resize-none rounded-xl bg-neutral-100 px-4 py-4 text-base outline-none placeholder:text-neutral-400"
             />
           </div>
 
@@ -775,8 +858,8 @@ ${form.message}`;
               <MapPin size={20} />
             </div>
             <div>
-              <p className="font-semibold text-neutral-900">Nuestra Dirección</p>
-              <p className="text-sm text-neutral-500">Puente Alto, Región Metropolitana</p>
+              <p className="text-lg font-bold text-neutral-900">Nuestra Dirección</p>
+              <p className="mt-1 text-base text-neutral-500">Puente Alto, Región Metropolitana</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -784,8 +867,8 @@ ${form.message}`;
               <Phone size={20} />
             </div>
             <div>
-              <p className="font-semibold text-neutral-900">Llámanos</p>
-              <p className="text-sm text-neutral-500">+56 9 5454 6997</p>
+              <p className="text-lg font-bold text-neutral-900">Llámanos</p>
+              <p className="mt-1 text-base text-neutral-500">+56 9 5454 6997</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -793,8 +876,8 @@ ${form.message}`;
               <Mail size={20} />
             </div>
             <div>
-              <p className="font-semibold text-neutral-900">Envíanos un Email</p>
-              <p className="text-sm text-neutral-500">elgorditofastfood16@gmail.com</p>
+              <p className="text-lg font-bold text-neutral-900">Envíanos un Email</p>
+              <p className="mt-1 text-base text-neutral-500">elgorditofastfood16@gmail.com</p>
             </div>
           </div>
         </div>
@@ -804,69 +887,142 @@ ${form.message}`;
 }
 
 function AboutPage() {
-  const philosophy = [
-    {
-      title: "Calidad",
-      text: "Nos esforzamos por usar solo los ingredientes de la más alta calidad.",
-    },
-    {
-      title: "Frescura",
-      text: "Nuestros productos son frescos y de origen local.",
-    },
-    {
-      title: "Servicio",
-      text: "Ofrecemos un servicio amable y atento a cada cliente.",
-    },
-  ];
-
   return (
-    <div className="pb-6 md:pb-16">
-      <img
-        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&h=700&fit=crop"
-        alt="Fachada del restaurante"
-        className="h-40 w-full object-cover md:h-72"
-      />
-      <div className="px-4 md:mx-auto md:max-w-5xl md:px-8">
-        <div className="md:grid md:grid-cols-3 md:gap-14">
-          <div className="md:col-span-2">
-            <h2 className="mt-4 text-lg font-bold text-neutral-900 md:mt-8 md:text-2xl">
-              Nuestra Historia
+    <div className="w-full bg-white px-6 py-10 md:px-16 lg:px-20">
+      <div className="grid w-full gap-12 lg:grid-cols-2 lg:items-start">
+
+        {/* TARJETA IZQUIERDA */}
+        <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
+
+          <img
+            src={burguer}
+            alt="Hamburguesa El Gordito"
+            className="h-[300px] w-full object-cover object-center md:h-[340px]"
+          />
+
+          <div className="p-6 md:p-7">
+            <h2 className="text-2xl font-bold text-neutral-900 md:text-3xl">
+              El Gordito Fast Food
             </h2>
-            <p className="mt-2 text-[15px] leading-relaxed text-neutral-600 md:text-base">
-              Nuestro restaurante, establecido en 1995, se ha convertido en un
-              referente local en comida rápida de calidad. Nos especializamos en
-              ofrecer una deliciosa variedad de pizzas, hamburguesas y otros
-              platillos rápidos, elaborados con ingredientes frescos y un toque
-              único. Nuestro equipo comprometido y amigable trabaja para brindar
-              un servicio rápido y eficiente, asegurando una experiencia agradable
-              para cada cliente.
+
+            <p className="mt-3 text-base leading-relaxed text-neutral-600">
+              Cocina de comida rápida preparada al momento, enfocada en
+              hamburguesas, churrascos y papas fritas.
+            </p>
+
+            <div className="mt-8 space-y-7">
+
+              <div>
+                <p className="text-lg font-bold text-neutral-900">
+                  Pedidos solo para llevar
+                </p>
+                <p className="mt-1 text-neutral-500">
+                  No contamos con atención para consumo en el lugar.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-lg font-bold text-neutral-900">
+                  Delivery
+                </p>
+                <p className="mt-1 text-neutral-500">
+                  Disponible según distancia. El valor se calcula según los
+                  kilómetros.
+                </p>
+              </div>
+
+              <div>
+                <p className="text-lg font-bold text-neutral-900">
+                  Zona de atención
+                </p>
+                <p className="mt-1 text-neutral-500">
+                  Puente Alto y alrededores.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* INFORMACIÓN DERECHA */}
+        <div className="lg:py-6">
+
+          <p className="text-sm font-bold uppercase tracking-[0.25em] text-green-700">
+            Nosotros
+          </p>
+
+          <h1 className="mt-4 text-4xl font-bold leading-tight text-neutral-900 md:text-6xl">
+            Más que comida,
+            <span className="block text-green-700">
+              es sabor real.
+            </span>
+          </h1>
+
+          <p className="mt-8 max-w-2xl text-base leading-8 text-neutral-600 md:text-lg">
+            En El Gordito creemos que una buena hamburguesa o un buen
+            churrasco no solo se trata de comida, sino de disfrutar algo
+            rico y contundente. Preparamos cada pedido al momento, buscando
+            entregar siempre un producto fresco y con mucho sabor.
+          </p>
+
+          <p className="mt-5 max-w-2xl text-base leading-8 text-neutral-600 md:text-lg">
+            Trabajamos desde casa con una cocina dedicada a los pedidos.
+            Puedes realizar tu compra previamente y coordinar el retiro o
+            solicitar delivery según tu ubicación.
+          </p>
+
+          <div className="my-9 h-px w-full bg-green-100" />
+
+          <div className="space-y-8">
+
+            <div>
+              <h3 className="text-xl font-bold text-neutral-900">
+                Calidad
+              </h3>
+              <p className="mt-1 text-base text-neutral-500 md:text-lg">
+                Buscamos utilizar buenos ingredientes para lograr el mejor
+                sabor en cada pedido.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-neutral-900">
+                Frescura
+              </h3>
+              <p className="mt-1 text-base text-neutral-500 md:text-lg">
+                Nuestros pedidos se preparan al momento para entregarlos
+                frescos y recién hechos.
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-bold text-neutral-900">
+                Servicio
+              </h3>
+              <p className="mt-1 text-base text-neutral-500 md:text-lg">
+                Queremos que cada pedido sea simple, rápido y tenga una buena
+                experiencia desde que lo realizas hasta que lo recibes.
+              </p>
+            </div>
+
+          </div>
+
+          <div className="mt-12">
+            <p className="text-3xl font-bold italic text-green-700 md:text-4xl">
+              Gracias por el apoyo.
+            </p>
+
+            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.35em] text-neutral-400">
+              El Gordito Fast Food
             </p>
           </div>
 
-          <div>
-            <h2 className="mt-6 text-lg font-bold text-neutral-900 md:mt-8 md:text-2xl">
-              Nuestra Filosofía
-            </h2>
-            <div className="mt-3 flex flex-col gap-3">
-              {philosophy.map((item) => (
-                <div
-                  key={item.title}
-                  className="flex items-center gap-3 rounded-2xl bg-white p-3 shadow-sm ring-1 ring-neutral-100"
-                >
-                  <div className="h-11 w-11 flex-shrink-0 rounded-full bg-green-100" />
-                  <div>
-                    <p className="font-semibold text-neutral-900">{item.title}</p>
-                    <p className="text-sm text-neutral-500">{item.text}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>
   );
 }
+
 
 /* ------------------------------------------------------------------ */
 /*  App                                                                */

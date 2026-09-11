@@ -1,10 +1,18 @@
 @import "tailwindcss";
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 /* Definimos el color naranja/rojizo del restaurante */
 @theme {
   --color-brand: #FF5722;
 }
 
 body {
-  background-color: #F3F4F6; /* Fondo gris claro de la app */
+  background-color: #F3F4F6;
+  font-family: "Inter", sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
 }
