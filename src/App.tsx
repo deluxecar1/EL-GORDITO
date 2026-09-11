@@ -464,9 +464,10 @@ function HomePage({ onGoToMenu }: { onGoToMenu: () => void }) {
 }
 
 function MenuPage({
-  cartByProduct,
   onAdd,
 }: {
+  onAdd: (product: Product) => void;
+}) {
   cartByProduct: Record<string, number>;
   onAdd: (product: Product) => void;
 }) {
@@ -1034,10 +1035,6 @@ export default function App() {
     [cart]
   );
 
-  function addToCart(product: Product) {
-    setCart((prev) => {
-      const existing = prev.find((l) => l.product.id === product.id);
-      if (existing) {
         return prev.map((l) =>
           l.product.id === product.id ? { ...l, qty: l.qty + 1 } : l
         );
@@ -1081,7 +1078,7 @@ export default function App() {
 
       <main className="min-h-0 flex-1 overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]">
         {view === "home" && <HomePage onGoToMenu={() => setView("menu")} />}
-        {view === "menu" && <MenuPage cartByProduct={cartByProduct} onAdd={addToCart} />}
+        {view === "menu" && <MenuPage onAdd={addToCart} />}
         {view === "cart" && (
           <CartPage
             lines={cart}
