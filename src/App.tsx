@@ -280,7 +280,7 @@ function Header({
       className="sticky top-0 z-20 flex-shrink-0 border-b border-green-100 bg-white/95 backdrop-blur"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      <div className="relative flex h-24 w-full items-center justify-between px-6 md:h-32 md:px-16">
+      <div className="relative flex h-16 w-full items-center justify-between px-4 md:h-20 md:px-10">
         {/* left: back arrow (mobile only, when not home) + logo */}
         <div className="flex items-center gap-2">
           {view !== "home" && (
@@ -300,7 +300,7 @@ function Header({
             <img
   src={logo}
   alt="El Gordito Fast Food"
-  className="h-20 w-auto object-contain md:h-24"
+  className="h-12 w-auto object-contain md:h-16"
 />
           </button>
         </div>
@@ -311,14 +311,14 @@ function Header({
         </h1>
 
         {/* desktop horizontal nav */}
-        <nav className="hidden items-center gap-16 md:flex">
+        <nav className="hidden items-center gap-10 md:flex">
           {NAV_ITEMS.map((item) => {
             const active = view === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`text-xl md:text-2xl font-bold tracking-tight transition-colors ${
+                className={`text-lg md:text-xl font-bold tracking-tight transition-colors ${
                   active ? "text-green-700" : "text-neutral-500 hover:text-neutral-900"
                 }`}
               >
@@ -332,10 +332,10 @@ function Header({
         <button
           onClick={onCartClick}
           aria-label="Carrito"
-          className="relative rounded-full p-3 text-[#0B6B3A] active:bg-neutral-100 md:border md:border-neutral-200 md:px-6 md:py-3 md:hover:bg-neutral-50"
+          className="relative rounded-full p-2 text-[#0B6B3A] active:bg-neutral-100 md:border md:border-neutral-200 md:px-4 md:py-2 md:hover:bg-neutral-50"
         >
           <span className="flex items-center gap-2">
-            <ShoppingCart size={24} />
+            <ShoppingCart size={20} />
             <span className="hidden text-base font-semibold text-neutral-800 md:inline">
               Carrito
             </span>
@@ -386,7 +386,7 @@ function HomePage({ onGoToMenu }: { onGoToMenu: () => void }) {
   return (
     <div className="pb-6 md:pb-16">
       <div className="mx-6 mt-4 overflow-hidden rounded-2xl md:mx-16 md:mt-8">
-  <div className="grid min-h-[420px] items-center md:grid-cols-[42%_58%]">
+  <div className="grid min-h-[360px] items-center md:grid-cols-[42%_58%]">
     
     <div
   className="h-72 bg-cover bg-no-repeat md:h-full"
@@ -401,22 +401,22 @@ function HomePage({ onGoToMenu }: { onGoToMenu: () => void }) {
     Bienvenidos a
   </p>
 
-  <h1 className="mt-4 text-5xl font-bold uppercase leading-none md:text-7xl">
+  <h1 className="mt-3 text-3xl font-bold uppercase leading-none md:text-4xl">
     <span className="text-[#0B6B3A]">EL</span>
     <span className="text-[#0B6B3A]">Gordito</span>
   </h1>
 
-  <p className="mt-5 text-xl font-bold uppercase text-neutral-900 md:text-3xl">
+  <p className="mt-4 text-lg font-bold uppercase text-neutral-900 md:text-2xl">
     Hamburguesas, churrascos y papas fritas
   </p>
 
-  <p className="mt-4 max-w-xl text-base leading-7 text-neutral-600 md:text-lg">
+  <p className="mt-3 max-w-xl text-sm leading-6 text-neutral-600 md:text-base">
     Sabor contundente, hecho para matar el hambre como corresponde.
   </p>
 
   <button
     onClick={onGoToMenu}
-    className="mt-8 flex w-full items-center justify-center rounded-full bg-[#0B6B3A] px-6 py-4 text-base font-bold uppercase text-white transition hover:bg-[#07552E]"
+    className="mt-6 flex w-full items-center justify-center rounded-full bg-[#0B6B3A] px-6 py-3 text-sm font-bold uppercase text-white transition hover:bg-[#07552E]"
   >
     Hacer un pedido
 </button>
@@ -482,9 +482,9 @@ function MenuPage({
   }, [activeTab, query]);
 
   return (
-    <div className="w-full bg-white px-6 py-10 md:px-16 lg:px-20">
+    <div className="w-full bg-white px-6 py-8 md:px-16 lg:px-20">
       {/* ENCABEZADO DEL MENÚ */}
-<section className="mb-10 border-b border-green-100 pb-8">
+<section className="mb-8 border-b border-green-100 pb-6">
   <p className="text-sm font-bold uppercase tracking-[0.35em] text-green-700">
     Nuestro menú
   </p>
@@ -498,14 +498,14 @@ function MenuPage({
         </span>
       </h1>
 
-      <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600 md:text-lg">
+      <p className="mt-4 max-w-2xl text-sm leading-6 text-neutral-600 md:text-base">
         Hamburguesas, churrascos y papas fritas preparadas al momento.
         Encuentra tu favorito, agrégalo al carrito y realiza tu pedido.
       </p>
     </div>
 
     <div className="shrink-0 md:text-right">
-      <p className="text-2xl font-bold italic text-green-700 md:text-3xl">
+      <p className="text-xl font-bold italic text-green-700 md:text-2xl">
         Sabor contundente.
       </p>
 
@@ -553,34 +553,28 @@ function MenuPage({
         {filtered.map((product) => (
           <div
             key={product.id}
-            className="relative flex min-h-[210px] overflow-hidden rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-sm"
+            className="relative flex h-[150px] overflow-hidden rounded-xl border border-neutral-200 bg-white text-neutral-900 shadow-sm"
           >
             <img
               src={product.image}
               alt={product.name}
               className="h-full w-[42%] flex-shrink-0 object-cover object-center"
             />
-            <div className="order-1 flex min-w-0 flex-1 flex-col p-4">
-              <p className="text-lg font-bold text-neutral-900">
+            <div className="order-1 flex min-w-0 flex-1 flex-col p-3">
+              <p className="text-base font-bold text-neutral-900">
                 {product.name}
               </p>
               <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-neutral-500">{product.subtitle}</p>
               <p className="mt-auto pt-4 text-lg font-bold text-green-700">{formatPrice(product.price)}</p>
               <button
   onClick={() => onAdd(product)}
-  className="absolute bottom-3 right-3 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-green-600 text-2xl font-bold text-white transition hover:bg-green-700"
+  className="absolute bottom-3 right-3 z-10 hidden h-10 w-10 items-center justify-center rounded-full bg-[#0B6B3A] text-xl font-bold text-white transition hover:bg-[#07552F] sm:flex"
   aria-label={`Agregar ${product.name} al carrito`}
 >
   +
 </button>
             </div>
-            <button
-              onClick={() => onAdd(product)}
-              className="flex flex-shrink-0 items-center gap-1.5 rounded-full bg-green-700 px-3 py-2 text-xs font-semibold text-white active:bg-green-800 sm:hidden"
-            >
-              <ShoppingCart size={14} />
-              {cartByProduct[product.id] ? `Agregado (${cartByProduct[product.id]})` : "Agregar"}
-            </button>
+
           </div>
         ))}
       </div>
@@ -768,7 +762,7 @@ ${form.message}`;
   window.open(whatsappUrl, "_blank");
 }
   return (
-    <div className="w-full bg-white px-6 py-10 md:px-16 lg:px-20">
+    <div className="w-full bg-white px-6 py-6 md:px-12 lg:px-14">
       <section className="mb-10 border-b border-green-100 pb-8">
   <p className="text-sm font-bold uppercase tracking-[0.35em] text-green-700">
     Pídenos
@@ -776,21 +770,21 @@ ${form.message}`;
 
   <div className="mt-4 flex flex-col justify-between gap-6 md:flex-row md:items-end">
     <div>
-      <h1 className="text-4xl font-bold leading-tight text-neutral-900 md:text-6xl">
+      <h1 className="text-3xl font-bold leading-tight text-neutral-900 md:text-4xl">
         Haz tu pedido,
         <span className="block text-green-700">
           nosotros lo preparamos.
         </span>
       </h1>
 
-      <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-600 md:text-lg">
+      <p className="mt-3 max-w-2xl text-sm leading-6 text-neutral-600 md:text-base">
         ¿Tienes alguna consulta, pedido especial o quieres coordinar tu compra?
         Escríbenos y te responderemos por WhatsApp.
       </p>
     </div>
 
     <div className="shrink-0 md:text-right">
-      <p className="text-2xl font-bold italic text-green-700 md:text-3xl">
+      <p className="text-xl font-bold italic text-green-700 md:text-2xl">
         Rico, rápido y contundente.
       </p>
 
@@ -801,8 +795,8 @@ ${form.message}`;
   </div>
 </section>
 
-      <div className="mt-10 grid gap-12 lg:grid-cols-2 lg:gap-20">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+      <div className="mt-6 grid gap-8 lg:grid-cols-2 lg:gap-14">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
             <label className="mb-2 block text-base font-semibold text-neutral-700">
               Nombre
@@ -811,7 +805,7 @@ ${form.message}`;
               required
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              placeholder="introduce tu nombre"
+              placeholder="Introduce tu nombre"
               className="w-full rounded-xl bg-neutral-100 px-4 py-4 text-base outline-none placeholder:text-neutral-400"
             />
           </div>
