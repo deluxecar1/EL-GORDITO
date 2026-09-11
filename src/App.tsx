@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import logo from "./assets/CarruselRecurso 9.png";
 import {
   Home as HomeIcon,
   BookOpen,
@@ -24,14 +25,14 @@ import {
 
 const RESTAURANT_NAME = "El Gordito";
 const RESTAURANT_FULL_NAME = "El Gordito Fast Food";
-const WHATSAPP_NUMBER = "18095777289"; // digits only, country code included
-const DELIVERY_FEE = 50;
+const WHATSAPP_NUMBER = "56954546997"; // digits only, country code included
+const DELIVERY_FEE = 0;
 
 /* ------------------------------------------------------------------ */
 /*  Types                                                              */
 /* ------------------------------------------------------------------ */
 
-type Category = "Entradas" | "Platos" | "Postres" | "Bebidas";
+type Category = "Churrascos" | "Hamburguesas" | "Papas Fritas";
 
 interface Product {
   id: string;
@@ -53,86 +54,190 @@ type View = "home" | "menu" | "cart" | "contact" | "about";
 /*  Data                                                               */
 /* ------------------------------------------------------------------ */
 
+interface Product {
+  id: string;
+  name: string;
+  subtitle: string;
+  price: number;
+  category: Category;
+  image: string;
+}
+
+interface CartLine {
+  product: Product;
+  qty: number;
+}
+
+
+/* ------------------------------------------------------------------ */
+/*  Data - EL GORDITO                                                  */
+/* ------------------------------------------------------------------ */
+
 const PRODUCTS: Product[] = [
+  /* ================================================================ */
+  /*  HAMBURGUESAS                                                     */
+  /* ================================================================ */
+
   {
-    id: "hamburguesa",
-    name: "Hamburguesa",
-    subtitle: "clásica",
-    price: 650,
-    category: "Platos",
+    id: "cuarto-gordito",
+    name: "Cuarto Gordito",
+    subtitle:
+      "Carne, queso cheddar, cebolla, pepinillos, ketchup y mostaza",
+    price: 0,
+    category: "Hamburguesas",
     image:
       "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
   },
   {
-    id: "hamburguesa-doble",
-    name: "Hamburguesa Doble",
-    subtitle: "clásica",
-    price: 850,
-    category: "Platos",
+    id: "la-regalona",
+    name: "La Regalona",
+    subtitle:
+      "Carne, queso cheddar, tocino, cebolla y salsa BBQ",
+    price: 0,
+    category: "Hamburguesas",
     image:
       "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop",
   },
   {
-    id: "pizza",
-    name: "Pizza",
-    subtitle: "clásica",
-    price: 650,
-    category: "Platos",
+    id: "don-gordo",
+    name: "Don Gordo",
+    subtitle:
+      "Doble carne, lechuga, queso cheddar, tocino, cebolla y salsa BBQ",
+    price: 0,
+    category: "Hamburguesas",
     image:
-      "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=400&fit=crop",
   },
   {
-    id: "pizza-grande",
-    name: "Pizza Grande",
-    subtitle: "clásica",
-    price: 990,
-    category: "Platos",
+    id: "hamburguesa-italiana",
+    name: "Hamburguesa Italiana",
+    subtitle:
+      "Carne, palta, tomate, lechuga y mayonesa",
+    price: 0,
+    category: "Hamburguesas",
     image:
-      "https://images.unsplash.com/photo-1594007654729-407eedc4be65?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
+  },
+
+  /* ================================================================ */
+  /*  CHURRASCOS                                                       */
+  /* ================================================================ */
+
+  {
+    id: "churrasco-italiano",
+    name: "Churrasco Italiano",
+    subtitle:
+      "Carne, tomate, palta y mayonesa",
+    price: 0,
+    category: "Churrascos",
+    image:
+      "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop",
   },
   {
-    id: "aros-cebolla",
-    name: "Aros de Cebolla",
-    subtitle: "crujientes",
-    price: 350,
-    category: "Entradas",
+    id: "churrasco-barros-luco",
+    name: "Churrasco Barros Luco",
+    subtitle:
+      "Carne y queso fundido",
+    price: 0,
+    category: "Churrascos",
     image:
-      "https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
   },
   {
-    id: "papas-fritas",
-    name: "Papas Fritas",
-    subtitle: "porción grande",
-    price: 300,
-    category: "Entradas",
+    id: "churrasco-dinamico",
+    name: "Churrasco Dinámico",
+    subtitle:
+      "Carne, tomate, porotos verdes y ají verde",
+    price: 0,
+    category: "Churrascos",
+    image:
+      "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop",
+  },
+  {
+    id: "churrasco-a-lo-pobre",
+    name: "Churrasco A lo Pobre",
+    subtitle:
+      "Carne, cebolla frita y huevo",
+    price: 0,
+    category: "Churrascos",
+    image:
+      "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=400&fit=crop",
+  },
+  {
+    id: "churrasco-palta-mayo",
+    name: "Churrasco Palta Mayo",
+    subtitle:
+      "Carne, palta y mayonesa",
+    price: 0,
+    category: "Churrascos",
+    image:
+      "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=400&fit=crop",
+  },
+
+  /* ================================================================ */
+  /*  PAPAS FRITAS                                                     */
+  /* ================================================================ */
+
+  {
+    id: "papas-clasicas",
+    name: "Clásicas",
+    subtitle:
+      "Papas fritas",
+    price: 0,
+    category: "Papas Fritas",
     image:
       "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop",
   },
   {
-    id: "flan",
-    name: "Flan Casero",
-    subtitle: "postre de la casa",
-    price: 250,
-    category: "Postres",
+    id: "papas-cheddar",
+    name: "Cheddar",
+    subtitle:
+      "Papas fritas con queso cheddar",
+    price: 0,
+    category: "Papas Fritas",
     image:
-      "https://images.unsplash.com/photo-1470324161839-ce2bb6fa6bc3?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop",
   },
   {
-    id: "gaseosa",
-    name: "Gaseosa",
-    subtitle: "lata 355ml",
-    price: 150,
-    category: "Bebidas",
+    id: "papas-bacon",
+    name: "Bacon",
+    subtitle:
+      "Papas fritas, queso cheddar y bacon crocante",
+    price: 0,
+    category: "Papas Fritas",
     image:
-      "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop",
+  },
+  {
+    id: "papas-supremas",
+    name: "Supremas",
+    subtitle:
+      "Papas fritas, queso cheddar, cebollín y tomate",
+    price: 0,
+    category: "Papas Fritas",
+    image:
+      "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop",
+  },
+  {
+    id: "salchipapas",
+    name: "Salchipapas",
+    subtitle:
+      "Papas fritas con salchichas",
+    price: 0,
+    category: "Papas Fritas",
+    image:
+      "https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?w=400&h=400&fit=crop",
   },
 ];
 
+/* ------------------------------------------------------------------ */
+/*  Categorías del menú                                                */
+/* ------------------------------------------------------------------ */
+
 const CATEGORY_TABS: Array<Category | "Todos"> = [
-  "Entradas",
-  "Platos",
-  "Postres",
-  "Bebidas",
+  "Churrascos",
+  "Hamburguesas",
+  "Papas Fritas",
   "Todos",
 ];
 
@@ -148,7 +253,7 @@ const NAV_ITEMS: Array<{ id: View; label: string; icon: React.ReactNode }> = [
 /* ------------------------------------------------------------------ */
 
 function formatPrice(value: number): string {
-  return `RD$${value.toLocaleString("es-DO")}`;
+  return `$${value.toLocaleString("es-CL")}`;
 }
 
 /* ------------------------------------------------------------------ */
@@ -175,7 +280,7 @@ function Header({
       className="sticky top-0 z-20 flex-shrink-0 border-b border-neutral-100 bg-white/95 backdrop-blur"
       style={{ paddingTop: "env(safe-area-inset-top)" }}
     >
-      <div className="relative mx-auto flex h-14 max-w-6xl items-center justify-between px-4 md:h-16 md:px-8">
+      <div className="relative mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-20 md:px-8">
         {/* left: back arrow (mobile only, when not home) + logo */}
         <div className="flex items-center gap-2">
           {view !== "home" && (
@@ -192,10 +297,11 @@ function Header({
             className="flex items-center gap-2"
             aria-label="Ir al inicio"
           >
-            <UtensilsCrossed size={22} className="text-green-700" />
-            <span className="hidden text-base font-bold uppercase tracking-tight text-neutral-900 md:inline">
-              {RESTAURANT_FULL_NAME}
-            </span>
+            <img
+  src={logo}
+  alt="El Gordito Fast Food"
+  className="h-14 w-auto object-contain md:h-14"
+/>
           </button>
         </div>
 
@@ -307,7 +413,7 @@ function HomePage({ onGoToMenu }: { onGoToMenu: () => void }) {
             contundente y preparada para matar el hambre como corresponde.
           </p>
           <p className="mt-2 text-[15px] leading-relaxed text-neutral-600 md:text-base">
-            Tenemos hamburguesas, pizzas y papas fritas, preparados con buenos
+            Tenemos hamburguesas, churrascos y papas fritas, preparados con buenos
             ingredientes.
           </p>
           <button
@@ -325,7 +431,7 @@ function HomePage({ onGoToMenu }: { onGoToMenu: () => void }) {
               title="Ubicación del restaurante"
               className="h-full w-full"
               loading="lazy"
-              src="https://www.google.com/maps?q=Santiago,Rep%C3%BAblica%20Dominicana&output=embed"
+              src="https://www.google.com/maps?q=Plaza+de+Puente+Alto,+Chile&output=embed"
             />
           </div>
         </div>
@@ -342,7 +448,7 @@ function MenuPage({
   onAdd: (product: Product) => void;
 }) {
   const [query, setQuery] = useState("");
-  const [activeTab, setActiveTab] = useState<(typeof CATEGORY_TABS)[number]>("Platos");
+  const [activeTab, setActiveTab] = useState<(typeof CATEGORY_TABS)[number]>("Churrascos");
 
   const filtered = useMemo(() => {
     return PRODUCTS.filter((p) => {
@@ -359,7 +465,7 @@ function MenuPage({
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Buscar platos..."
+          placeholder="Buscar..."
           className="w-full bg-transparent text-base text-neutral-800 outline-none placeholder:text-neutral-400"
         />
       </div>
@@ -449,33 +555,30 @@ function CartPage({
   setNotes: (v: string) => void;
 }) {
   const subtotal = lines.reduce((sum, l) => sum + l.product.price * l.qty, 0);
-  const total = lines.length > 0 ? subtotal + DELIVERY_FEE : 0;
+  const total = lines.length > 0 ? subtotal: 0;
 
   const whatsappHref = useMemo(() => {
     if (lines.length === 0) return undefined;
     const itemLines = lines
       .map(
         (l) =>
-          `✅${l.product.name}\n  • Cantidad: ${l.qty}\n  • Precio: ${formatPrice(
+          `${l.product.name}\n  • Cantidad: ${l.qty}\n  • Precio: ${formatPrice(
             l.product.price * l.qty
           )}`
       )
       .join("\n\n");
     const message = [
-      `¡Hola! 🍕🍔 Quisiera pedir:`,
-      "",
-      itemLines,
-      "",
-      `🛵Delivery: ${formatPrice(DELIVERY_FEE)}`,
-      "-------------------->",
-      address ? `Dirección: ${address}` : undefined,
-      notes ? `Nota: ${notes}` : undefined,
-      "-------------------->",
-      `💎 Total a pagar: ${formatPrice(total)}`,
-      "¡Gracias!",
-    ]
-      .filter(Boolean)
-      .join("\n");
+  "¡Hola! Quisiera pedir:",
+  "",
+  itemLines,
+  "",
+  `Dirección: ${address || "No indicada"}`,
+  `Instrucciones: ${notes || "Sin instrucciones"}`,
+  "",
+  `Total productos: ${formatPrice(total)}`,
+  "Delivery: Se calcula según distancia (km).",
+].join("\n");
+
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
   }, [lines, address, notes, total]);
 
@@ -538,7 +641,7 @@ function CartPage({
               </div>
               <div className="flex-1">
                 <p className="font-semibold text-neutral-900">Delivery</p>
-                <p className="font-bold text-green-700">{formatPrice(DELIVERY_FEE)}</p>
+                <p className="font-semibold text-green-700">Según distancia (km)</p>
               </div>
             </div>
           </div>
@@ -589,16 +692,28 @@ function CartPage({
     </div>
   );
 }
-
 function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [sent, setSent] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  
 
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setSent(true);
-  }
+function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
 
+  const message = `Hola, soy ${form.name}.
+
+Correo: ${form.email}
+
+Mensaje:
+${form.message}`;
+
+  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappUrl, "_blank");
+}
   return (
     <div className="px-4 pb-6 md:mx-auto md:max-w-5xl md:px-8 md:pb-16">
       <h2 className="mt-3 text-lg font-bold text-neutral-900 md:mt-6 md:text-2xl">
@@ -653,11 +768,7 @@ function ContactPage() {
             <Send size={18} />
             Enviar
           </button>
-          {sent && (
-            <p className="text-center text-sm font-medium text-green-700">
-              ¡Mensaje enviado! Te responderemos pronto.
-            </p>
-          )}
+          
         </form>
 
         <div className="mt-6 flex flex-col gap-4 md:mt-0 md:justify-center">
@@ -667,7 +778,7 @@ function ContactPage() {
             </div>
             <div>
               <p className="font-semibold text-neutral-900">Nuestra Dirección</p>
-              <p className="text-sm text-neutral-500">Santiago, República Dominicana</p>
+              <p className="text-sm text-neutral-500">Puente Alto, Región Metropolitana</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -676,7 +787,7 @@ function ContactPage() {
             </div>
             <div>
               <p className="font-semibold text-neutral-900">Llámanos</p>
-              <p className="text-sm text-neutral-500">+1 809-577-7289</p>
+              <p className="text-sm text-neutral-500">+56 9 5454 6997</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -685,7 +796,7 @@ function ContactPage() {
             </div>
             <div>
               <p className="font-semibold text-neutral-900">Envíanos un Email</p>
-              <p className="text-sm text-neutral-500">info@elgordito.com</p>
+              <p className="text-sm text-neutral-500">elgorditofastfood16@gmail.com</p>
             </div>
           </div>
         </div>
